@@ -5,139 +5,109 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Kabinetsmonitor — Nederland</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@300;400&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
-/* ── ADAPTIVE PALETTE ─────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────────────────────
+   ALWAYS LIGHT — no dark mode. Inspired by Makeshift magazine & Sirotov design.
+───────────────────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
 :root {
-  --bg:        #faf8f4;
-  --bg2:       #f0ece4;
-  --bg3:       #e8e3d9;
-  --ink:       #1a1714;
-  --ink2:      #3d3830;
-  --mid:       #6b6358;
-  --muted:     #9e9589;
-  --rule:      #d4cec4;
-  --rule2:     #c8c0b4;
-  --d66:       #007a2b;
-  --vvd:       #c45e00;
-  --cda:       #005f49;
-  --shadow:    rgba(0,0,0,0.06);
+  --white:   #ffffff;
+  --paper:   #f7f5f2;
+  --ink:     #111110;
+  --ink2:    #2a2926;
+  --mid:     #888580;
+  --light:   #b8b4af;
+  --rule:    #e0ddd8;
+  --rule2:   #ccc9c3;
+  --d66:     #007a2b;
+  --vvd:     #c45e00;
+  --cda:     #005f49;
+  --red:     #c1272d;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg:      #18161200;
-    --bg:      #1a1814;
-    --bg2:     #222018;
-    --bg3:     #2c2a22;
-    --ink:     #f0ece4;
-    --ink2:    #d4cec4;
-    --mid:     #9e9589;
-    --muted:   #6b6358;
-    --rule:    #2e2c24;
-    --rule2:   #3a382e;
-    --d66:     #34c25a;
-    --vvd:     #f09040;
-    --cda:     #2ab894;
-    --shadow:  rgba(0,0,0,0.3);
-  }
-}
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-html { font-size: 16px; }
+html { font-size: 15px; color-scheme: light; }
 
 body {
-  background: var(--bg);
+  background: var(--white);
   color: var(--ink);
-  font-family: 'Barlow', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 300;
   line-height: 1.5;
-  min-height: 100vh;
-  transition: background 0.2s, color 0.2s;
 }
 
-/* ── MASTHEAD ── */
+/* ── MASTHEAD ────────────────────────────────────────────────────────────── */
 .masthead {
+  background: var(--white);
   border-bottom: 2px solid var(--ink);
-  padding: 0 clamp(1rem, 4vw, 2.5rem);
+  padding: 0 clamp(1rem, 5vw, 3rem);
   position: sticky;
   top: 0;
-  background: var(--bg);
-  z-index: 100;
+  z-index: 50;
 }
 
-.masthead-top {
+.mast-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.75rem 0 0.5rem;
+  padding: 0.6rem 0;
   border-bottom: 1px solid var(--rule);
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
-.dateline {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+.mast-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--mid);
-  white-space: nowrap;
 }
 
-.dateline-right { text-align: right; }
-
 .flag {
-  display: flex;
-  flex-direction: column;
-  width: 20px; height: 13px;
-  overflow: hidden;
-  border-radius: 1px;
-  flex-shrink: 0;
+  display: flex; flex-direction: column;
+  width: 18px; height: 12px;
+  overflow: hidden; border-radius: 1px; flex-shrink: 0;
 }
 .flag span { flex: 1; display: block; }
 .flag span:nth-child(1) { background: #ae1c28; }
-.flag span:nth-child(2) { background: #fff; }
+.flag span:nth-child(2) { background: #fff; border-top: 1px solid #eee; border-bottom: 1px solid #eee; }
 .flag span:nth-child(3) { background: #21468b; }
 
-.masthead-title {
+.mast-title {
   text-align: center;
-  padding: 0.7rem 0 0.5rem;
+  padding: 0.85rem 0 0.6rem;
   border-bottom: 1px solid var(--rule);
 }
 
-.masthead-title h1 {
-  font-family: 'Libre Baskerville', serif;
-  font-size: clamp(1.6rem, 5vw, 3.8rem);
-  font-weight: 700;
-  letter-spacing: -0.01em;
+.mast-title h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 5.5vw, 4.2rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
   line-height: 1;
   text-transform: uppercase;
   color: var(--ink);
 }
 
-.masthead-title h1 em {
-  font-style: italic;
-  font-weight: 400;
-}
+.mast-title h1 em { font-style: italic; font-weight: 700; }
 
-.masthead-sub {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.68rem;
+.mast-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--mid);
-  margin-top: 0.2rem;
+  margin-top: 0.3rem;
 }
 
 nav {
   display: flex;
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
-  padding: 0.3rem 0;
-  gap: 0;
+  padding: 0.35rem 0;
 }
 nav::-webkit-scrollbar { display: none; }
 
@@ -145,416 +115,429 @@ nav button {
   background: none;
   border: none;
   border-bottom: 2px solid transparent;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.13em;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--mid);
-  padding: 0.3rem 1.2rem 0.3rem 0;
+  padding: 0.25rem 1.5rem 0.25rem 0;
   cursor: pointer;
-  transition: color 0.15s;
-  margin-bottom: -1px;
   white-space: nowrap;
   flex-shrink: 0;
+  transition: color 0.15s;
+  margin-bottom: -1px;
 }
 nav button:hover { color: var(--ink); }
 nav button.active { color: var(--ink); border-bottom-color: var(--ink); }
 
-/* ── MAIN LAYOUT ── */
+/* ── PAGE ────────────────────────────────────────────────────────────────── */
 main {
-  max-width: 1280px;
+  max-width: 1240px;
   margin: 0 auto;
-  padding: clamp(1.25rem, 4vw, 2.5rem) clamp(1rem, 4vw, 2.5rem);
+  padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 5vw, 3rem);
 }
 
 .section { display: none; }
 .section.visible { display: block; }
 
 /* ── SECTION HEADER ── */
-.ed-header {
-  display: flex;
+.sec-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: baseline;
-  flex-wrap: wrap;
-  gap: 0.75rem 1.25rem;
-  margin-bottom: 1.75rem;
-  padding-bottom: 0.75rem;
+  gap: 1rem;
+  padding-bottom: 0.6rem;
   border-bottom: 2px solid var(--ink);
+  margin-bottom: 2rem;
 }
 
-.snum {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
+.sec-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--light);
 }
 
-.ed-header h2 {
-  font-family: 'Libre Baskerville', serif;
-  font-size: clamp(1.4rem, 3.5vw, 2rem);
+.sec-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.3rem, 3vw, 2rem);
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--ink);
 }
+.sec-title em { font-style: italic; font-weight: 400; }
 
-.ed-header h2 em { font-weight: 400; font-style: italic; }
-
-.ed-desc {
-  margin-left: auto;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.65rem;
+.sec-meta {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--mid);
+  color: var(--light);
   text-align: right;
   line-height: 1.7;
 }
 
-/* ── STAT BOXES ── */
-.stat-row {
+/* ── BIG STAT ROW ── */
+.kpi-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  border: 1px solid var(--rule2);
-  border-radius: 4px;
-  overflow: hidden;
-  margin-bottom: 1.75rem;
-  background: var(--bg2);
+  border-top: 1px solid var(--ink);
+  border-left: 1px solid var(--ink);
+  margin-bottom: 2.5rem;
 }
 
-.stat-box {
-  padding: clamp(1rem, 3vw, 1.5rem) clamp(1rem, 3vw, 2rem);
-  border-right: 1px solid var(--rule2);
+.kpi {
+  padding: clamp(1rem, 2.5vw, 1.75rem) clamp(1rem, 2.5vw, 1.75rem);
+  border-right: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
 }
-.stat-box:last-child { border-right: none; }
 
-.stat-lbl {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.13em;
+.kpi-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--mid);
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.5rem;
 }
 
-.stat-num {
-  font-family: 'Libre Baskerville', serif;
-  font-size: clamp(1.8rem, 4vw, 3.2rem);
-  font-weight: 700;
+.kpi-number {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 900;
   line-height: 1;
   color: var(--ink);
+  letter-spacing: -0.02em;
 }
 
-.stat-sub {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.63rem;
-  text-transform: uppercase;
+.kpi-number sup {
+  font-size: 0.4em;
+  font-weight: 700;
+  color: var(--mid);
+  vertical-align: super;
+}
+
+.kpi-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem;
   letter-spacing: 0.08em;
-  color: var(--muted);
-  margin-top: 0.25rem;
+  text-transform: uppercase;
+  color: var(--light);
+  margin-top: 0.3rem;
 }
 
-/* ── BAR TABLE ── */
-.bar-table {
+/* ── ACTIVITY TABLE ── */
+.act-table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 1.75rem;
+  margin-bottom: 2.5rem;
 }
 
-.bar-table tr { border-bottom: 1px solid var(--rule); }
-.bar-table tr:first-child { border-top: 2px solid var(--ink); }
-.bar-table tr:last-child { border-bottom: 2px solid var(--ink); }
-.bar-table tr:hover { background: var(--bg2); }
+.act-table thead tr {
+  border-bottom: 2px solid var(--ink);
+}
 
-.bar-table td {
-  padding: clamp(0.5rem, 1.5vw, 0.7rem) 0.4rem;
+.act-table thead th {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mid);
+  padding: 0.5rem 0.5rem;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.act-table thead th.r { text-align: right; }
+
+.act-table tbody tr {
+  border-bottom: 1px solid var(--rule);
+  transition: background 0.1s;
+}
+.act-table tbody tr:hover { background: var(--paper); }
+.act-table tbody tr:last-child { border-bottom: 2px solid var(--ink); }
+
+.act-table td {
+  padding: clamp(0.5rem, 1.5vw, 0.75rem) 0.5rem;
   vertical-align: middle;
 }
 
-.col-num {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.58rem;
-  font-weight: 600;
-  color: var(--muted);
-  width: 24px;
+.td-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.55rem;
+  color: var(--light);
+  width: 22px;
   text-align: right;
   padding-right: 0.75rem !important;
 }
 
-.col-minister { min-width: 130px; }
-.col-minister .nm {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: clamp(0.78rem, 2vw, 0.9rem);
-  font-weight: 700;
-  line-height: 1.2;
+.td-person { min-width: 140px; }
+
+.td-person .p-name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
   color: var(--ink);
-}
-.col-minister .mn {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.58rem;
-  color: var(--mid);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  line-height: 1.2;
 }
 
-.col-party { width: 44px; }
+.td-person .p-min {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.55rem;
+  color: var(--mid);
+  letter-spacing: 0.04em;
+  margin-top: 1px;
+}
+
+.td-party { width: 44px; }
 
 .ptag {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.58rem;
-  font-weight: 700;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.55rem;
+  font-weight: 500;
   letter-spacing: 0.08em;
-  padding: 0.1rem 0.35rem;
+  padding: 0.15rem 0.4rem;
   border-radius: 2px;
   display: inline-block;
 }
 
-.col-bar { padding-right: 1.2rem !important; }
+.td-bar { padding-right: 1rem !important; min-width: 80px; }
 
-.bar-out {
-  height: 6px;
-  background: var(--bg3);
-  border-radius: 3px;
+.bar-track {
+  height: 5px;
+  background: var(--rule);
+  border-radius: 0;
   overflow: hidden;
 }
-.bar-in {
+.bar-fill {
   height: 100%;
-  border-radius: 3px;
-  transition: width 0.9s cubic-bezier(0.16,1,0.3,1);
+  transition: width 1s cubic-bezier(0.16,1,0.3,1);
 }
 
-.col-c30 {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 1rem;
+.td-n {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
   font-weight: 700;
-  width: 36px;
   text-align: right;
+  width: 36px;
   color: var(--ink);
 }
 
-.col-c7 {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.7rem;
-  color: var(--mid);
-  width: 48px;
+.td-n7 {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
   text-align: right;
+  color: var(--mid);
+  width: 44px;
 }
 
-.col-st { width: 56px; text-align: right; padding-right: 0.5rem !important; }
+.td-status { width: 60px; text-align: right; }
 
-.slbl {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.58rem;
-  font-weight: 700;
+.stag {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.55rem;
+  font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 0.15rem 0.4rem;
   border-radius: 2px;
 }
-.slbl.active { background: #dcf5e4; color: #1a6b2e; }
-.slbl.quiet  { background: #fef3d8; color: #8a5a00; }
-.slbl.silent { background: var(--bg3); color: var(--muted); }
-
-@media (prefers-color-scheme: dark) {
-  .slbl.active { background: #0d3318; color: #5ce87a; }
-  .slbl.quiet  { background: #2e1f00; color: #f0b040; }
-}
+.stag.active { background: #e6f5eb; color: #1a6b2e; }
+.stag.quiet  { background: #fdf3e3; color: #8a5500; }
+.stag.silent { background: var(--paper); color: var(--light); }
 
 /* ── COALITION ── */
-.coal-grid {
+.coal-row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1px;
-  background: var(--rule2);
-  border: 1px solid var(--rule2);
-  border-radius: 4px;
-  overflow: hidden;
-  margin-bottom: 1.75rem;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--ink);
+  border-left: 1px solid var(--ink);
+  margin-bottom: 2.5rem;
 }
 
 .coal-card {
-  background: var(--bg);
-  padding: clamp(1.25rem, 3vw, 2rem);
+  border-right: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding: clamp(1.25rem, 2.5vw, 2rem);
   position: relative;
   overflow: hidden;
 }
 
-.coal-card::before {
-  content: attr(data-party);
+.coal-ghost {
   position: absolute;
-  bottom: -1rem;
-  right: 0.5rem;
-  font-family: 'Libre Baskerville', serif;
-  font-size: 7rem;
-  font-weight: 700;
-  opacity: 0.04;
+  bottom: -1.5rem; right: -0.5rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 9rem;
+  font-weight: 900;
+  color: var(--ink);
+  opacity: 0.03;
   line-height: 1;
   pointer-events: none;
   user-select: none;
-  color: var(--ink);
 }
 
-.coal-top-bar {
-  height: 3px;
-  border-radius: 2px;
-  margin-bottom: 1.25rem;
-}
-
-.coal-party-lbl {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: var(--mid);
-  margin-bottom: 0.25rem;
-}
-
-.coal-party-name {
-  font-family: 'Libre Baskerville', serif;
-  font-size: clamp(1.6rem, 4vw, 2.4rem);
-  font-weight: 700;
-  line-height: 1;
-  margin-bottom: 1.25rem;
-}
-
-.coal-big-num {
-  font-family: 'Libre Baskerville', serif;
-  font-size: clamp(2.5rem, 6vw, 3.5rem);
-  font-weight: 700;
-  line-height: 1;
-}
-
-.coal-big-lbl {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.62rem;
+.coal-party-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.55rem;
+  font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--mid);
+  margin-bottom: 0.3rem;
+}
+
+.coal-party-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.coal-big {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.coal-big-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mid);
   margin-bottom: 1rem;
-  padding-bottom: 0.85rem;
+  padding-bottom: 0.9rem;
   border-bottom: 1px solid var(--rule);
 }
 
-.coal-bar-row {
-  height: 5px;
-  background: var(--bg3);
-  border-radius: 3px;
-  overflow: hidden;
+.coal-bar-track {
+  height: 3px;
+  background: var(--rule);
   margin-bottom: 1.25rem;
 }
-.coal-bar-fill { height: 100%; border-radius: 3px; }
+.coal-bar-fill { height: 100%; }
 
-.mlist { display: flex; flex-direction: column; }
+.coal-mlist { display: flex; flex-direction: column; }
 
-.mlist-row {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.78rem;
-  font-weight: 400;
+.coal-mrow {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   gap: 0.5rem;
   padding: 0.38rem 0;
   border-bottom: 1px solid var(--rule);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 400;
   color: var(--ink2);
 }
-.mlist-row:last-child { border-bottom: none; }
+.coal-mrow:last-child { border-bottom: none; }
 
-.mlist-mn {
-  font-size: 0.58rem;
-  color: var(--muted);
-  text-transform: uppercase;
+.coal-mmin {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.52rem;
   letter-spacing: 0.05em;
+  color: var(--mid);
   text-align: right;
-  max-width: 50%;
+  max-width: 48%;
+  line-height: 1.4;
 }
 
 /* ── TOPICS ── */
-.topics-wrap {
+.topics-grid {
   display: grid;
-  grid-template-columns: 1fr 260px;
-  gap: 1px;
-  background: var(--rule2);
-  border: 1px solid var(--rule2);
-  border-radius: 4px;
-  overflow: hidden;
-  margin-bottom: 1.75rem;
+  grid-template-columns: 1fr 240px;
+  border-top: 1px solid var(--ink);
+  border-left: 1px solid var(--ink);
+  margin-bottom: 2.5rem;
 }
 
-.cloud-area {
-  background: var(--bg);
-  padding: clamp(1.25rem, 3vw, 2rem);
-  min-height: 320px;
+.cloud-panel {
+  border-right: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding: clamp(1.25rem, 2.5vw, 2rem);
+  min-height: 340px;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  gap: 0.3rem 0.5rem;
+  gap: 0.3rem 0.55rem;
 }
 
 .tw {
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Playfair Display', serif;
   cursor: pointer;
   line-height: 1.2;
   color: var(--ink);
-  transition: opacity 0.15s;
+  transition: color 0.15s;
 }
-.tw:hover { opacity: 0.45; }
+.tw:hover { color: var(--red); }
 .tw.it { font-style: italic; }
 
-.topics-side {
-  background: var(--bg2);
+.rank-panel {
+  border-bottom: 1px solid var(--ink);
+  border-right: 1px solid var(--ink);
   padding: 1.25rem;
+  background: var(--paper);
 }
 
-.ts-lbl {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
+.rank-head {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--mid);
   margin-bottom: 0.75rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule2);
 }
 
-.tr-row {
+.rank-row {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.42rem 0;
+  padding: 0.4rem 0;
   border-bottom: 1px solid var(--rule);
   cursor: pointer;
 }
-.tr-row:hover .tr-word { opacity: 0.6; }
-.tr-row:last-child { border-bottom: none; }
+.rank-row:last-child { border-bottom: none; }
+.rank-row:hover .rk-word { color: var(--red); }
 
-.tr-rk {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.56rem;
-  color: var(--muted);
+.rk-n {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.52rem;
+  color: var(--light);
   width: 14px;
   text-align: right;
   flex-shrink: 0;
 }
-.tr-word {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 700;
+
+.rk-word {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
   flex: 1;
   color: var(--ink);
-  transition: opacity 0.15s;
+  transition: color 0.15s;
 }
-.tr-bar-out { flex: 1; height: 3px; background: var(--bg3); border-radius: 2px; overflow: hidden; }
-.tr-bar-in  { height: 100%; background: var(--ink); border-radius: 2px; }
-.tr-cnt {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 0.75rem;
+
+.rk-bar-track { flex: 1; height: 2px; background: var(--rule2); }
+.rk-bar-fill  { height: 100%; background: var(--ink); }
+
+.rk-count {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.8rem;
   font-weight: 700;
-  width: 24px;
+  width: 22px;
   text-align: right;
   flex-shrink: 0;
   color: var(--ink);
@@ -563,39 +546,37 @@ main {
 /* ── FEED ── */
 .feed-ctrls {
   display: flex;
-  gap: 0.65rem;
+  gap: 0.6rem;
   align-items: center;
-  margin-bottom: 1.25rem;
-  padding-bottom: 0.85rem;
-  border-bottom: 1px solid var(--rule);
+  margin-bottom: 0.75rem;
   flex-wrap: wrap;
 }
 
 .feed-ctrls input,
 .feed-ctrls select {
-  background: var(--bg2);
+  background: var(--white);
   border: 1px solid var(--rule2);
   color: var(--ink);
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  padding: 0.5rem 0.85rem;
-  border-radius: 3px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  padding: 0.45rem 0.75rem;
+  border-radius: 0;
   outline: none;
   transition: border-color 0.15s;
   -webkit-appearance: none;
 }
 .feed-ctrls input { flex: 1; min-width: 180px; }
-.feed-ctrls input::placeholder { color: var(--muted); }
+.feed-ctrls input::placeholder { color: var(--light); }
 .feed-ctrls input:focus,
 .feed-ctrls select:focus { border-color: var(--ink); }
 
-.feed-cnt {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+.feed-count {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--mid);
   margin-left: auto;
@@ -603,284 +584,275 @@ main {
 }
 
 .feed-note {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.68rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
   color: var(--mid);
-  background: var(--bg2);
-  border: 1px solid var(--rule2);
-  border-radius: 3px;
-  padding: 0.6rem 0.9rem;
+  background: var(--paper);
+  border-left: 3px solid var(--rule2);
+  padding: 0.5rem 0.75rem;
   margin-bottom: 1.25rem;
-  line-height: 1.5;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
 }
-.feed-note strong { color: var(--ink2); font-weight: 700; }
 
 .feed-list { display: flex; flex-direction: column; }
 
 .feed-item {
   display: grid;
-  grid-template-columns: 72px 1fr auto;
+  grid-template-columns: 68px 1fr 60px;
   gap: 1.25rem;
-  padding: clamp(0.85rem, 2vw, 1.1rem) 0;
+  padding: clamp(0.75rem, 2vw, 1rem) 0;
   border-bottom: 1px solid var(--rule);
   text-decoration: none;
   color: inherit;
   align-items: start;
   transition: background 0.1s;
-  border-radius: 2px;
 }
 .feed-item:first-child { border-top: 2px solid var(--ink); }
 .feed-item:last-child  { border-bottom: 2px solid var(--ink); }
-.feed-item:hover { background: var(--bg2); }
-.feed-item:hover .fi-title { text-decoration: underline; text-decoration-color: var(--muted); }
+.feed-item:hover { background: var(--paper); }
 
 .fi-date {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.62rem;
-  font-weight: 700;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem;
+  font-weight: 500;
   letter-spacing: 0.05em;
-  text-transform: uppercase;
   color: var(--mid);
-  line-height: 1.6;
+  line-height: 1.7;
   padding-top: 0.1rem;
 }
 
 .fi-title {
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Playfair Display', serif;
   font-size: clamp(0.85rem, 2vw, 0.95rem);
-  line-height: 1.45;
-  margin-bottom: 0.28rem;
+  font-weight: 700;
+  line-height: 1.4;
   color: var(--ink);
+  margin-bottom: 0.25rem;
 }
+.feed-item:hover .fi-title { text-decoration: underline; text-decoration-color: var(--rule2); }
 
 .fi-byline {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.63rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--mid);
   display: flex;
   gap: 0.4rem;
   flex-wrap: wrap;
   align-items: center;
+  margin-bottom: 0.25rem;
 }
 
 .fi-intro {
-  font-size: clamp(0.73rem, 1.8vw, 0.8rem);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
   font-weight: 300;
   color: var(--mid);
   line-height: 1.5;
-  margin-top: 0.3rem;
 }
 
 .fi-arrow {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: var(--muted);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--light);
+  text-align: right;
   padding-top: 0.1rem;
-  white-space: nowrap;
   transition: color 0.15s;
 }
 .feed-item:hover .fi-arrow { color: var(--ink); }
 
 /* ── LOADING ── */
-.loading-state {
+.loading {
   padding: 4rem 0;
   text-align: center;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 700;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 500;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--mid);
+  color: var(--light);
 }
 
 /* ── FOOTER ── */
-.site-footer {
+footer {
   border-top: 2px solid var(--ink);
-  padding: 1.1rem clamp(1rem, 4vw, 2.5rem);
+  padding: 1rem clamp(1rem, 5vw, 3rem);
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: 0.5rem;
+  background: var(--white);
 }
-.site-footer .fl {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 0.77rem;
+
+.f-left {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.78rem;
   font-style: italic;
   color: var(--mid);
 }
-.site-footer .fr {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 0.13em;
+
+.f-right {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--light);
 }
 
 /* ── RESPONSIVE ── */
-@media (max-width: 640px) {
-  .stat-row { grid-template-columns: 1fr; }
-  .stat-box { border-right: none; border-bottom: 1px solid var(--rule2); }
-  .stat-box:last-child { border-bottom: none; }
-
-  .topics-wrap { grid-template-columns: 1fr; }
-  .topics-side { border-top: 1px solid var(--rule2); }
-
-  .feed-item { grid-template-columns: 1fr; gap: 0.25rem; }
-  .fi-date { display: inline; margin-right: 0.5rem; }
-  .fi-arrow { display: none; }
-
-  .col-c7, .col-st { display: none; }
-  .ed-desc { display: none; }
-
-  .coal-grid { grid-template-columns: 1fr; }
+@media (max-width: 700px) {
+  .kpi-row   { grid-template-columns: 1fr 1fr; }
+  .coal-row  { grid-template-columns: 1fr; }
+  .topics-grid { grid-template-columns: 1fr; }
+  .rank-panel { border-top: 1px solid var(--ink); }
+  .feed-item { grid-template-columns: 1fr; gap: 0.2rem; }
+  .fi-arrow  { display: none; }
+  .td-n7, .td-status { display: none; }
+  .sec-meta { display: none; }
 }
 
-@media (max-width: 900px) {
-  .col-c7 { display: none; }
+@media (max-width: 480px) {
+  .kpi-row { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
 
+<!-- MASTHEAD -->
 <div class="masthead">
-  <div class="masthead-top">
-    <span class="dateline" id="top-date">—</span>
+  <div class="mast-top">
+    <span class="mast-label" id="top-date">—</span>
     <div class="flag"><span></span><span></span><span></span></div>
-    <span class="dateline dateline-right" id="top-count">—</span>
+    <span class="mast-label" id="top-count">—</span>
   </div>
-  <div class="masthead-title">
+  <div class="mast-title">
     <h1>Kabinets<em>monitor</em></h1>
-    <div class="masthead-sub">Kabinet-Jetten · Persberichten &amp; Activiteit · Nederland 2026</div>
+    <div class="mast-sub">Kabinet-Jetten · D66 / VVD / CDA · Nederland 2026</div>
   </div>
   <nav>
-    <button class="active" onclick="showSection('activity',this)">I. Activiteit</button>
-    <button onclick="showSection('coalition',this)">II. Coalitie</button>
-    <button onclick="showSection('topics',this)">III. Trending</button>
-    <button onclick="showSection('feed',this)">IV. Persberichten</button>
+    <button class="active" onclick="show('activity',this)">I. Activiteit</button>
+    <button onclick="show('coalition',this)">II. Coalitie</button>
+    <button onclick="show('topics',this)">III. Trending</button>
+    <button onclick="show('feed',this)">IV. Persberichten</button>
   </nav>
 </div>
 
 <main>
-  <!-- I -->
+
+  <!-- I. ACTIVITY -->
   <section id="section-activity" class="section visible">
-    <div class="ed-header">
-      <span class="snum">§ I</span>
-      <h2>Minister <em>Activiteit</em></h2>
-      <div class="ed-desc">Persberichten per bewindspersoon<br>30 dagen · 7 dagen</div>
+    <div class="sec-head">
+      <span class="sec-num">§ I</span>
+      <h2 class="sec-title">Minister <em>Activiteit</em></h2>
+      <span class="sec-meta">Persberichten per bewindspersoon<br>30 d · 7 d</span>
     </div>
-    <div id="activity-container"><div class="loading-state">Laden…</div></div>
+    <div id="activity-out"><div class="loading">Laden…</div></div>
   </section>
 
-  <!-- II -->
+  <!-- II. COALITION -->
   <section id="section-coalition" class="section">
-    <div class="ed-header">
-      <span class="snum">§ II</span>
-      <h2>Coalitie <em>Breakdown</em></h2>
-      <div class="ed-desc">D66 · VVD · CDA<br>Minderheidskabinet 2026</div>
+    <div class="sec-head">
+      <span class="sec-num">§ II</span>
+      <h2 class="sec-title">Coalitie <em>Breakdown</em></h2>
+      <span class="sec-meta">D66 · VVD · CDA<br>Minderheidskabinet</span>
     </div>
-    <div id="coalition-container"><div class="loading-state">Laden…</div></div>
+    <div id="coalition-out"><div class="loading">Laden…</div></div>
   </section>
 
-  <!-- III -->
+  <!-- III. TOPICS -->
   <section id="section-topics" class="section">
-    <div class="ed-header">
-      <span class="snum">§ III</span>
-      <h2>Trending <em>Onderwerpen</em></h2>
-      <div class="ed-desc">Woordfrequentie analyse<br>Alle ministeries</div>
+    <div class="sec-head">
+      <span class="sec-num">§ III</span>
+      <h2 class="sec-title">Trending <em>Onderwerpen</em></h2>
+      <span class="sec-meta">Woordfrequentie<br>Alle ministeries</span>
     </div>
-    <div id="topics-container"><div class="loading-state">Laden…</div></div>
+    <div id="topics-out"><div class="loading">Laden…</div></div>
   </section>
 
-  <!-- IV -->
+  <!-- IV. FEED -->
   <section id="section-feed" class="section">
-    <div class="ed-header">
-      <span class="snum">§ IV</span>
-      <h2>Persberichten <em>Feed</em></h2>
-      <div class="ed-desc">Doorzoekbaar archief<br>Alle ministeries</div>
+    <div class="sec-head">
+      <span class="sec-num">§ IV</span>
+      <h2 class="sec-title">Persberichten <em>Feed</em></h2>
+      <span class="sec-meta">Officieel rijksoverheid.nl<br>Doorzoekbaar archief</span>
     </div>
     <div class="feed-ctrls">
-      <input type="text" id="search-input" placeholder="Zoek op titel, minister of onderwerp…" oninput="filterFeed()"/>
-      <select id="ministry-filter" onchange="filterFeed()"><option value="">Alle ministeries</option></select>
-      <select id="party-filter" onchange="filterFeed()">
+      <input type="text" id="q" placeholder="Zoek titel, minister, onderwerp…" oninput="filterFeed()"/>
+      <select id="f-min" onchange="filterFeed()"><option value="">Alle ministeries</option></select>
+      <select id="f-par" onchange="filterFeed()">
         <option value="">Alle partijen</option>
         <option value="D66">D66</option>
         <option value="VVD">VVD</option>
         <option value="CDA">CDA</option>
       </select>
-      <span class="feed-cnt" id="feed-count"></span>
+      <span class="feed-count" id="feed-count"></span>
     </div>
     <div class="feed-note">
-      ℹ De persberichten zijn afkomstig van rijksoverheid.nl en gekoppeld aan het huidige ministerie. 
-      De minister op de bronpagina kan nog de vorige bewindspersoon vermelden — 
-      de namen in dit dashboard zijn de <strong>huidige Jetten-ministers</strong>.
+      Persberichten zijn rechtstreeks afkomstig van rijksoverheid.nl — de officiële bron van alle ministeries.
+      Klikken opent de originele pagina. Ministernamen zijn de huidige Jetten-bewindspersonen.
     </div>
-    <div id="feed-container"><div class="loading-state">Laden…</div></div>
+    <div id="feed-out"><div class="loading">Laden…</div></div>
   </section>
+
 </main>
 
-<footer class="site-footer">
-  <div class="fl">Brondata via opendata.rijksoverheid.nl &amp; RSS-feeds</div>
-  <div class="fr" id="footer-gen">—</div>
+<footer>
+  <span class="f-left">Bron: opendata.rijksoverheid.nl</span>
+  <span class="f-right" id="f-gen">—</span>
 </footer>
 
 <script>
-let DATA = null;
+let D = null;
 
-function showSection(name, btn) {
+function show(name, btn) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
   document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
   document.getElementById('section-' + name).classList.add('visible');
   if (btn) btn.classList.add('active');
 }
 
-function pColor(p) {
-  const dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const map = dark
-    ? { D66:'#34c25a', VVD:'#f09040', CDA:'#2ab894' }
-    : { D66:'#007a2b', VVD:'#c45e00', CDA:'#005f49' };
-  return map[p] || (dark ? '#9e9589' : '#6b6358');
+function pc(p) {
+  return { D66:'#007a2b', VVD:'#c45e00', CDA:'#005f49' }[p] || '#888';
 }
 
-function fmtDate(iso) {
+function fd(iso) {
   if (!iso) return '–';
   return new Date(iso).toLocaleDateString('nl-NL', {day:'numeric', month:'short', year:'numeric'});
 }
 
-function daysAgo(iso) {
+function ago(iso) {
   if (!iso) return '';
   const d = Math.round((Date.now() - new Date(iso)) / 86400000);
-  if (d === 0) return 'vandaag';
-  if (d === 1) return 'gisteren';
-  return d + ' d.';
+  return d === 0 ? 'vandaag' : d === 1 ? 'gisteren' : d + 'd';
 }
 
-async function loadData() {
+async function load() {
   try {
     const r = await fetch('dashboard.json');
     if (!r.ok) throw new Error('HTTP ' + r.status);
-    DATA = await r.json();
+    D = await r.json();
     render();
   } catch(e) {
-    document.querySelectorAll('.loading-state').forEach(el => {
-      el.innerHTML = `⚠ Kon data niet laden.<br><small style="opacity:0.6">${e.message} — voer fetch_data.py uit</small>`;
+    document.querySelectorAll('.loading').forEach(el => {
+      el.innerHTML = `⚠ Kon data niet laden.<br><small style="opacity:.5">${e.message} — voer fetch_data.py uit</small>`;
     });
   }
 }
 
 function render() {
-  const gen = new Date(DATA.generated_at);
+  const gen = new Date(D.generated_at);
   document.getElementById('top-date').textContent =
     gen.toLocaleDateString('nl-NL', {weekday:'long', day:'numeric', month:'long', year:'numeric'});
   document.getElementById('top-count').textContent =
-    DATA.activity.length + ' ministeries · ' + DATA.feed.length + ' berichten';
-  document.getElementById('footer-gen').textContent =
+    D.activity.length + ' min. · ' + D.feed.length + ' berichten';
+  document.getElementById('f-gen').textContent =
     'Bijgewerkt ' + gen.toLocaleTimeString('nl-NL', {hour:'2-digit', minute:'2-digit'});
   renderActivity();
   renderCoalition();
@@ -890,124 +862,135 @@ function render() {
 
 /* ── ACTIVITY ── */
 function renderActivity() {
-  const act = DATA.activity;
-  const total30 = act.reduce((s,a)=>s+a.count_30d, 0);
-  const total7  = act.reduce((s,a)=>s+a.count_7d, 0);
-  const nActive = act.filter(a=>a.status==='active').length;
-  const max30   = Math.max(...act.map(a=>a.count_30d), 1);
+  const act  = D.activity;
+  const t30  = act.reduce((s,a) => s+a.count_30d, 0);
+  const t7   = act.reduce((s,a) => s+a.count_7d, 0);
+  const nAct = act.filter(a => a.status==='active').length;
+  const max  = Math.max(...act.map(a => a.count_30d), 1);
 
-  const topHtml = `<div class="stat-row">
-    <div class="stat-box">
-      <div class="stat-lbl">Totaal persberichten</div>
-      <div class="stat-num">${total30}</div>
-      <div class="stat-sub">Afgelopen 30 dagen</div>
+  const kpis = `<div class="kpi-row">
+    <div class="kpi">
+      <div class="kpi-label">Totaal persberichten</div>
+      <div class="kpi-number">${t30}</div>
+      <div class="kpi-sub">Afgelopen 30 dagen</div>
     </div>
-    <div class="stat-box">
-      <div class="stat-lbl">Deze week</div>
-      <div class="stat-num">${total7}</div>
-      <div class="stat-sub">Afgelopen 7 dagen</div>
+    <div class="kpi">
+      <div class="kpi-label">Deze week</div>
+      <div class="kpi-number">${t7}</div>
+      <div class="kpi-sub">Afgelopen 7 dagen</div>
     </div>
-    <div class="stat-box">
-      <div class="stat-lbl">Actieve ministers</div>
-      <div class="stat-num">${nActive}<span style="font-size:1.2rem;opacity:0.4"> /${act.length}</span></div>
-      <div class="stat-sub">Publicatie ≤ 3 dagen</div>
+    <div class="kpi">
+      <div class="kpi-label">Actieve ministers</div>
+      <div class="kpi-number">${nAct}<sup>/${act.length}</sup></div>
+      <div class="kpi-sub">Publicatie ≤ 3 dagen</div>
     </div>
   </div>`;
 
-  const rows = act.map((a, i) => {
-    const c   = pColor(a.party);
-    const pct = Math.round(a.count_30d / max30 * 100);
+  const rows = act.map((a,i) => {
+    const c   = pc(a.party);
+    const pct = Math.round(a.count_30d / max * 100);
     return `<tr>
-      <td class="col-num">${String(i+1).padStart(2,'0')}</td>
-      <td class="col-minister">
-        <div class="nm">${a.minister}</div>
-        <div class="mn">${a.ministry}</div>
+      <td class="td-num">${String(i+1).padStart(2,'0')}</td>
+      <td class="td-person">
+        <div class="p-name">${a.minister}</div>
+        <div class="p-min">${a.ministry}</div>
       </td>
-      <td class="col-party">
-        <span class="ptag" style="background:${c}22;color:${c};border:1px solid ${c}55">${a.party}</span>
+      <td class="td-party">
+        <span class="ptag" style="background:${c}18;color:${c};border:1px solid ${c}44">${a.party}</span>
       </td>
-      <td class="col-bar">
-        <div class="bar-out"><div class="bar-in" style="width:${pct}%;background:${c}"></div></div>
+      <td class="td-bar">
+        <div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${c}"></div></div>
       </td>
-      <td class="col-c30">${a.count_30d}</td>
-      <td class="col-c7">${a.count_7d}w</td>
-      <td class="col-st">
-        <span class="slbl ${a.status}">${a.status==='active'?'Actief':a.status==='quiet'?'Stil':'Inactief'}</span>
+      <td class="td-n">${a.count_30d}</td>
+      <td class="td-n7">${a.count_7d}w</td>
+      <td class="td-status">
+        <span class="stag ${a.status}">${a.status==='active'?'Actief':a.status==='quiet'?'Stil':'Inactief'}</span>
       </td>
     </tr>`;
   }).join('');
 
-  document.getElementById('activity-container').innerHTML =
-    topHtml + `<table class="bar-table"><tbody>${rows}</tbody></table>`;
+  document.getElementById('activity-out').innerHTML = kpis + `
+    <table class="act-table">
+      <thead><tr>
+        <th></th>
+        <th>Bewindspersoon</th>
+        <th>Partij</th>
+        <th>Activiteit (30d)</th>
+        <th class="r">30d</th>
+        <th class="r">7d</th>
+        <th class="r">Status</th>
+      </tr></thead>
+      <tbody>${rows}</tbody>
+    </table>`;
 }
 
 /* ── COALITION ── */
 function renderCoalition() {
-  const parties = DATA.parties;
-  const maxT = Math.max(...parties.map(p=>p.total_30d), 1);
+  const parties = D.parties;
+  const maxT = Math.max(...parties.map(p => p.total_30d), 1);
 
   const cards = parties.map(p => {
-    const c   = pColor(p.party);
+    const c   = pc(p.party);
     const pct = Math.round(p.total_30d / maxT * 100);
-    const ministers = DATA.activity.filter(a => a.party === p.party);
+    const ministers = D.activity.filter(a => a.party === p.party);
     const rows = ministers.map(m =>
-      `<div class="mlist-row">
+      `<div class="coal-mrow">
         <span>${m.minister}</span>
-        <span class="mlist-mn">${m.ministry}</span>
+        <span class="coal-mmin">${m.ministry}</span>
       </div>`
     ).join('');
-    return `<div class="coal-card" data-party="${p.party}">
-      <div class="coal-top-bar" style="background:${c}"></div>
-      <div class="coal-party-lbl">Coalitiepartij</div>
+    return `<div class="coal-card">
+      <div class="coal-ghost">${p.party}</div>
+      <div class="coal-party-label">Coalitiepartij</div>
       <div class="coal-party-name" style="color:${c}">${p.party}</div>
-      <div class="coal-big-num" style="color:${c}">${p.total_30d}</div>
-      <div class="coal-big-lbl">Persberichten (30 dagen)</div>
-      <div class="coal-bar-row"><div class="coal-bar-fill" style="width:${pct}%;background:${c}"></div></div>
-      <div class="mlist">${rows}</div>
+      <div class="coal-big" style="color:${c}">${p.total_30d}</div>
+      <div class="coal-big-label">Persberichten (30 dagen)</div>
+      <div class="coal-bar-track"><div class="coal-bar-fill" style="width:${pct}%;background:${c}"></div></div>
+      <div class="coal-mlist">${rows}</div>
     </div>`;
   }).join('');
 
-  document.getElementById('coalition-container').innerHTML =
-    `<div class="coal-grid">${cards}</div>`;
+  document.getElementById('coalition-out').innerHTML =
+    `<div class="coal-row">${cards}</div>`;
 }
 
 /* ── TOPICS ── */
 function renderTopics() {
-  const topics = DATA.topics;
-  const maxC = Math.max(...topics.map(t=>t.count), 1);
-  const minC = Math.min(...topics.map(t=>t.count), 1);
+  const topics = D.topics;
+  const maxC = Math.max(...topics.map(t => t.count), 1);
+  const minC = Math.min(...topics.map(t => t.count), 1);
 
-  const cloud = topics.map((t, i) => {
-    const r   = (t.count - minC) / (maxC - minC + 1);
-    const sz  = (0.72 + r * 2.0).toFixed(2);
-    const op  = (0.25 + r * 0.75).toFixed(2);
-    const cls = i % 3 === 1 ? ' it' : '';
+  const cloud = topics.map((t,i) => {
+    const ratio = (t.count - minC) / (maxC - minC + 1);
+    const sz  = (0.7 + ratio * 2.2).toFixed(2);
+    const op  = (0.2 + ratio * 0.8).toFixed(2);
+    const cls = i%3===1 ? ' it' : '';
     return `<span class="tw${cls}" style="font-size:${sz}rem;opacity:${op}"
-      onclick="topicSearch('${t.word}')" title="${t.word}: ${t.count}×">${t.word}</span>`;
+      onclick="topicClick('${t.word}')" title="${t.word}: ${t.count}×">${t.word}</span>`;
   }).join(' ');
 
-  const sidebar = topics.slice(0, 15).map((t, i) => {
-    const pct = Math.round(t.count / maxC * 100);
-    return `<div class="tr-row" onclick="topicSearch('${t.word}')">
-      <span class="tr-rk">${i+1}</span>
-      <span class="tr-word">${t.word}</span>
-      <div class="tr-bar-out"><div class="tr-bar-in" style="width:${pct}%"></div></div>
-      <span class="tr-cnt">${t.count}</span>
+  const ranks = topics.slice(0,15).map((t,i) => {
+    const pct = Math.round(t.count/maxC*100);
+    return `<div class="rank-row" onclick="topicClick('${t.word}')">
+      <span class="rk-n">${i+1}</span>
+      <span class="rk-word">${t.word}</span>
+      <div class="rk-bar-track"><div class="rk-bar-fill" style="width:${pct}%"></div></div>
+      <span class="rk-count">${t.count}</span>
     </div>`;
   }).join('');
 
-  document.getElementById('topics-container').innerHTML = `
-    <div class="topics-wrap">
-      <div class="cloud-area">${cloud}</div>
-      <div class="topics-side">
-        <div class="ts-lbl">Top 15 — Frequentie</div>
-        ${sidebar}
+  document.getElementById('topics-out').innerHTML = `
+    <div class="topics-grid">
+      <div class="cloud-panel">${cloud}</div>
+      <div class="rank-panel">
+        <div class="rank-head">Top 15 — Frequentie</div>
+        ${ranks}
       </div>
     </div>`;
 }
 
-function topicSearch(word) {
-  document.getElementById('search-input').value = word;
+function topicClick(word) {
+  document.getElementById('q').value = word;
   document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
   document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
   document.getElementById('section-feed').classList.add('visible');
@@ -1017,22 +1000,21 @@ function topicSearch(word) {
 
 /* ── FEED ── */
 function renderFeed() {
-  const mins = [...new Set(DATA.feed.map(f => f.ministry))].sort();
-  const sel  = document.getElementById('ministry-filter');
+  const mins = [...new Set(D.feed.map(f => f.ministry))].sort();
+  const sel  = document.getElementById('f-min');
   mins.forEach(m => {
     const o = document.createElement('option');
-    o.value = m; o.textContent = m;
-    sel.appendChild(o);
+    o.value = m; o.textContent = m; sel.appendChild(o);
   });
   filterFeed();
 }
 
 function filterFeed() {
-  const q   = (document.getElementById('search-input').value || '').toLowerCase();
-  const min = document.getElementById('ministry-filter').value;
-  const par = document.getElementById('party-filter').value;
+  const q   = (document.getElementById('q').value   || '').toLowerCase();
+  const min = document.getElementById('f-min').value;
+  const par = document.getElementById('f-par').value;
 
-  const items = DATA.feed.filter(f => {
+  const items = D.feed.filter(f => {
     if (min && f.ministry !== min) return false;
     if (par && f.party    !== par) return false;
     if (q && !f.title.toLowerCase().includes(q) &&
@@ -1044,13 +1026,13 @@ function filterFeed() {
   document.getElementById('feed-count').textContent = items.length + ' berichten';
 
   const html = items.map(f => {
-    const c = pColor(f.party);
+    const c = pc(f.party);
     return `<a class="feed-item" href="${f.url}" target="_blank" rel="noopener">
-      <div class="fi-date">${fmtDate(f.date_ts)}<br>${daysAgo(f.date_ts)}</div>
+      <div class="fi-date">${fd(f.date_ts)}<br>${ago(f.date_ts)}</div>
       <div>
         <div class="fi-title">${f.title}</div>
         <div class="fi-byline">
-          <span style="color:${c}">${f.party}</span>
+          <span style="color:${c};font-weight:600">${f.party}</span>
           <span>·</span><span>${f.minister}</span>
           <span>·</span><span>${f.ministry}</span>
         </div>
@@ -1058,17 +1040,12 @@ function filterFeed() {
       </div>
       <div class="fi-arrow">Lees →</div>
     </a>`;
-  }).join('') || '<div class="loading-state">Geen resultaten.</div>';
+  }).join('') || '<div class="loading">Geen resultaten.</div>';
 
-  document.getElementById('feed-container').innerHTML = `<div class="feed-list">${html}</div>`;
+  document.getElementById('feed-out').innerHTML = `<div class="feed-list">${html}</div>`;
 }
 
-// Re-render colors if system theme changes
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-  if (DATA) render();
-});
-
-loadData();
+load();
 </script>
 </body>
 </html>
