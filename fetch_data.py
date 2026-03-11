@@ -81,19 +81,12 @@ MINISTRIES = {
         "party":       "VVD",
         "party_color": "#c45e00",
     },
-    "ministerie-van-economische-zaken": {
+    "ministerie-van-economische-zaken-en-klimaat": {
         "name":        "Economische Zaken & Klimaat",
         "minister":    "Heleen Herbert",
         "role":        "Minister",
         "party":       "CDA",
         "party_color": "#005f49",
-    },
-    "ministerie-van-landbouw-natuur-en-voedselkwaliteit": {
-        "name":        "Landbouw, Natuur & Voedselkwaliteit",
-        "minister":    "Jaimi van Essen",
-        "role":        "Minister",
-        "party":       "D66",
-        "party_color": "#007a2b",
     },
     "ministerie-van-landbouw-visserij-voedselzekerheid-en-natuur": {
         # Renamed slug under Jetten
@@ -119,7 +112,9 @@ MINISTRIES = {
     },
 }
 
-# ── Date set for Jetten cabinet start — filter out older news ────────────────
+# Cabinet start date — used for display only, not for filtering
+# We show all recent press releases regardless of date because Jetten only
+# started on 23 Feb 2026 and there are very few items since then.
 CABINET_START = datetime(2026, 2, 23)
 
 STOPWORDS = {
@@ -209,13 +204,6 @@ def parse_date(s):
             pass
     return None
 
-
-def is_jetten_era(item) -> bool:
-    """Only include press releases published on/after 23 Feb 2026."""
-    d = parse_date(item.get("publicationDate", ""))
-    if d is None:
-        return True   # include if date unknown
-    return d >= CABINET_START
 
 
 # ── Analytics ─────────────────────────────────────────────────────────────────
@@ -307,7 +295,7 @@ def party_breakdown(activity: list) -> list:
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 def main():
-    out_dir = Path(__file__).parent
+    out_dir = Path(__file__).parent.parent / "frontend"
     out_dir.mkdir(parents=True, exist_ok=True)
 
     print(f"\n── Fetching news for {len(MINISTRIES)} Jetten cabinet ministries…\n")
@@ -319,11 +307,8 @@ def main():
         rss  = fetch_rss(slug)
         combined = merge(api, rss)
 
-        # Filter: only Jetten era (on/after 23 Feb 2026)
-        filtered = [i for i in combined if is_jetten_era(i)]
-
-        all_news[slug] = {"meta": {**meta, "slug": slug}, "items": filtered}
-        print(f"API:{len(api):3d}  RSS:{len(rss):3d}  Jetten-era:{len(filtered):3d}")
+        all_news[slug] = {"meta": {**meta, "slug": slug}, "items": combined}
+        print(f"API:{len(api):3d}  RSS:{len(rss):3d}  items:{len(combined):3d}")
         time.sleep(0.4)
 
     # Build outputs
