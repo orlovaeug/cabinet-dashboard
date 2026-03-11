@@ -17,47 +17,47 @@ from collections import Counter
 from pathlib import Path
 import time
 
-# ── Jetten cabinet ministers (installed Feb 2026) ───────────────────────────
+# ── Schoof cabinet ministers (installed July 2024) ───────────────────────────
 MINISTRIES = {
     "ministerie-van-algemene-zaken": {
         "name": "Algemene Zaken",
-        "minister": "Rob Jetten",
+        "minister": "Dick Schoof",
         "role": "Minister-President",
-        "party": "D66",
-        "party_color": "#009933",
+        "party": "Independent",
+        "party_color": "#555e6c",
         "rss": "https://www.rijksoverheid.nl/ministeries/ministerie-van-algemene-zaken/nieuws.rss",
+    },
+    "ministerie-van-binnenlandse-zaken-en-koninkrijksrelaties": {
+        "name": "Binnenlandse Zaken & Koninkrijksrelaties",
+        "minister": "Judith Uitermark",
+        "role": "Minister",
+        "party": "NSC",
+        "party_color": "#0a4f8a",
+        "rss": "https://www.rijksoverheid.nl/ministeries/ministerie-van-binnenlandse-zaken-en-koninkrijksrelaties/nieuws.rss",
     },
     "ministerie-van-buitenlandse-zaken": {
         "name": "Buitenlandse Zaken",
-        "minister": "Tom Berendsen",
+        "minister": "Caspar Veldkamp",
         "role": "Minister",
-        "party": "CDA",
-        "party_color": "#007B5F",
+        "party": "NSC",
+        "party_color": "#0a4f8a",
         "rss": "https://www.rijksoverheid.nl/ministeries/ministerie-van-buitenlandse-zaken/nieuws.rss",
     },
-    "ministerie-van-justitie-en-veiligheid": {
-        "name": "Justitie & Veiligheid",
-        "minister": "David van Weel",
+    "ministerie-van-defensie": {
+        "name": "Defensie",
+        "minister": "Ruben Brekelmans",
         "role": "Minister",
         "party": "VVD",
         "party_color": "#e17000",
-        "rss": "https://www.rijksoverheid.nl/ministeries/ministerie-van-justitie-en-veiligheid/nieuws.rss",
+        "rss": "https://www.rijksoverheid.nl/ministeries/ministerie-van-defensie/nieuws.rss",
     },
-    "ministerie-van-binnenlandse-zaken-en-koninkrijksrelaties": {
-        "name": "Binnenlandse Zaken",
-        "minister": "Pieter Heerma",
+    "ministerie-van-economische-zaken": {
+        "name": "Economische Zaken",
+        "minister": "Dirk Beljaarts",
         "role": "Minister",
-        "party": "CDA",
-        "party_color": "#007B5F",
-        "rss": "https://www.rijksoverheid.nl/ministeries/ministerie-van-binnenlandse-zaken-en-koninkrijksrelaties/nieuws.rss",
-    },
-    "ministerie-van-onderwijs-cultuur-en-wetenschap": {
-        "name": "Onderwijs, Cultuur & Wetenschap",
-        "minister": "Rianne Letschert",
-        "role": "Minister",
-        "party": "D66",
-        "party_color": "#009933",
-        "rss": "https://www.rijksoverheid.nl/ministeries/ministerie-van-onderwijs-cultuur-en-wetenschap/nieuws.rss",
+        "party": "PVV",
+        "party_color": "#003580",
+        "rss": "https://www.rijksoverheid.nl/ministeries/ministerie-van-economische-zaken/nieuws.rss",
     },
     "ministerie-van-financien": {
         "name": "Financiën",
@@ -67,61 +67,69 @@ MINISTRIES = {
         "party_color": "#e17000",
         "rss": "https://www.rijksoverheid.nl/ministeries/ministerie-van-financien/nieuws.rss",
     },
-    "ministerie-van-defensie": {
-        "name": "Defensie",
-        "minister": "Dilan Yeşilgöz",
-        "role": "Minister / Viceminister-president",
-        "party": "VVD",
-        "party_color": "#e17000",
-        "rss": "https://www.rijksoverheid.nl/ministeries/ministerie-van-defensie/nieuws.rss",
-    },
     "ministerie-van-infrastructuur-en-waterstaat": {
         "name": "Infrastructuur & Waterstaat",
-        "minister": "Vincent Karremans",
+        "minister": "Barry Madlener",
         "role": "Minister",
-        "party": "VVD",
-        "party_color": "#e17000",
+        "party": "PVV",
+        "party_color": "#003580",
         "rss": "https://www.rijksoverheid.nl/ministeries/ministerie-van-infrastructuur-en-waterstaat/nieuws.rss",
     },
-    "ministerie-van-economische-zaken": {
-        "name": "Economische Zaken & Klimaat",
-        "minister": "Heleen Herbert",
+    "ministerie-van-justitie-en-veiligheid": {
+        "name": "Justitie & Veiligheid",
+        "minister": "David van Weel",
         "role": "Minister",
-        "party": "CDA",
-        "party_color": "#007B5F",
-        "rss": "https://www.rijksoverheid.nl/ministeries/ministerie-van-economische-zaken/nieuws.rss",
+        "party": "Independent",
+        "party_color": "#555e6c",
+        "rss": "https://www.rijksoverheid.nl/ministeries/ministerie-van-justitie-en-veiligheid/nieuws.rss",
     },
     "ministerie-van-landbouw-natuur-en-voedselkwaliteit": {
         "name": "Landbouw, Natuur & Voedselkwaliteit",
-        "minister": "Jaimi van Essen",
+        "minister": "Femke Wiersma",
         "role": "Minister",
-        "party": "D66",
-        "party_color": "#009933",
+        "party": "BBB",
+        "party_color": "#275937",
         "rss": "https://www.rijksoverheid.nl/ministeries/ministerie-van-landbouw-natuur-en-voedselkwaliteit/nieuws.rss",
+    },
+    "ministerie-van-onderwijs-cultuur-en-wetenschap": {
+        "name": "Onderwijs, Cultuur & Wetenschap",
+        "minister": "Eppo Bruins",
+        "role": "Minister",
+        "party": "NSC",
+        "party_color": "#0a4f8a",
+        "rss": "https://www.rijksoverheid.nl/ministeries/ministerie-van-onderwijs-cultuur-en-wetenschap/nieuws.rss",
     },
     "ministerie-van-sociale-zaken-en-werkgelegenheid": {
         "name": "Sociale Zaken & Werkgelegenheid",
-        "minister": "Hans Vijlbrief",
+        "minister": "Eddy van Hijum",
         "role": "Minister",
-        "party": "D66",
-        "party_color": "#009933",
+        "party": "NSC",
+        "party_color": "#0a4f8a",
         "rss": "https://www.rijksoverheid.nl/ministeries/ministerie-van-sociale-zaken-en-werkgelegenheid/nieuws.rss",
     },
     "ministerie-van-volksgezondheid-welzijn-en-sport": {
         "name": "Volksgezondheid, Welzijn & Sport",
-        "minister": "Sophie Hermans",
+        "minister": "Fleur Agema",
         "role": "Minister",
-        "party": "VVD",
-        "party_color": "#e17000",
+        "party": "PVV",
+        "party_color": "#003580",
         "rss": "https://www.rijksoverheid.nl/ministeries/ministerie-van-volksgezondheid-welzijn-en-sport/nieuws.rss",
     },
     "ministerie-van-volkshuisvesting-en-ruimtelijke-ordening": {
         "name": "Volkshuisvesting & Ruimtelijke Ordening",
-        "minister": "Elanor Boekholt-O'Sullivan",
+        "minister": "Mona Keijzer",
         "role": "Minister",
-        "party": "D66",
-        "party_color": "#009933",
+        "party": "BBB",
+        "party_color": "#275937",
         "rss": "https://www.rijksoverheid.nl/ministeries/ministerie-van-volkshuisvesting-en-ruimtelijke-ordening/nieuws.rss",
+    },
+    "ministerie-van-klimaat-en-groene-groei": {
+        "name": "Klimaat & Groene Groei",
+        "minister": "Sophie Hermans",
+        "role": "Minister",
+        "party": "VVD",
+        "party_color": "#e17000",
+        "rss": "https://www.rijksoverheid.nl/ministeries/ministerie-van-klimaat-en-groene-groei/nieuws.rss",
     },
 }
 
@@ -301,7 +309,7 @@ def party_breakdown(activity: list) -> list:
 
 # ── Entry point ───────────────────────────────────────────────────────────────
 def main():
-    out_dir = Path(__file__).parent
+    out_dir = Path(__file__).parent.parent / "frontend" / "data"
     out_dir.mkdir(parents=True, exist_ok=True)
 
     all_news: dict = {}

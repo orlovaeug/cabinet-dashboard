@@ -5,756 +5,1051 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Kabinetsmonitor — Nederland</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;600&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@300;400&display=swap" rel="stylesheet"/>
 <style>
+/* ── ADAPTIVE PALETTE ─────────────────────────────────────────────────────── */
+:root {
+  --bg:        #faf8f4;
+  --bg2:       #f0ece4;
+  --bg3:       #e8e3d9;
+  --ink:       #1a1714;
+  --ink2:      #3d3830;
+  --mid:       #6b6358;
+  --muted:     #9e9589;
+  --rule:      #d4cec4;
+  --rule2:     #c8c0b4;
+  --d66:       #007a2b;
+  --vvd:       #c45e00;
+  --cda:       #005f49;
+  --shadow:    rgba(0,0,0,0.06);
+}
+
+@media (prefers-color-scheme: dark) {
   :root {
-    --bg:       #0d0f14;
-    --surface:  #161921;
-    --border:   #252932;
-    --muted:    #3a404d;
-    --text:     #e8eaf0;
-    --subtext:  #8892a4;
-    --accent:   #ae8f5c;
-    --accent2:  #c4a96d;
-    --nl-red:   #c1272d;
-    --nl-blue:  #003580;
-    --pvv:      #003580;
-    --vvd:      #e17000;
-    --nsc:      #0a4f8a;
-    --bbb:      #275937;
-    --ind:      #555e6c;
+    --bg:      #18161200;
+    --bg:      #1a1814;
+    --bg2:     #222018;
+    --bg3:     #2c2a22;
+    --ink:     #f0ece4;
+    --ink2:    #d4cec4;
+    --mid:     #9e9589;
+    --muted:   #6b6358;
+    --rule:    #2e2c24;
+    --rule2:   #3a382e;
+    --d66:     #34c25a;
+    --vvd:     #f09040;
+    --cda:     #2ab894;
+    --shadow:  rgba(0,0,0,0.3);
   }
+}
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Source Sans 3', sans-serif;
-    font-weight: 300;
-    min-height: 100vh;
-  }
+html { font-size: 16px; }
 
-  /* ── Header ── */
-  header {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    padding: 0 2rem;
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    height: 64px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  line-height: 1.5;
+  min-height: 100vh;
+  transition: background 0.2s, color 0.2s;
+}
 
-  .logo-flag {
-    display: flex;
-    flex-direction: column;
-    width: 28px;
-    height: 19px;
-    border-radius: 2px;
-    overflow: hidden;
-    flex-shrink: 0;
-  }
-  .logo-flag span { flex: 1; display: block; }
-  .logo-flag span:nth-child(1) { background: #ae1c28; }
-  .logo-flag span:nth-child(2) { background: #fff; }
-  .logo-flag span:nth-child(3) { background: #21468b; }
+/* ── MASTHEAD ── */
+.masthead {
+  border-bottom: 2px solid var(--ink);
+  padding: 0 clamp(1rem, 4vw, 2.5rem);
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 100;
+}
 
-  .site-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.25rem;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    color: var(--text);
-  }
+.masthead-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0 0.5rem;
+  border-bottom: 1px solid var(--rule);
+  gap: 1rem;
+}
 
-  .site-title span { color: var(--accent); }
+.dateline {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mid);
+  white-space: nowrap;
+}
 
-  .header-meta {
-    margin-left: auto;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--subtext);
-    text-align: right;
-    line-height: 1.6;
-  }
+.dateline-right { text-align: right; }
 
-  nav {
-    display: flex;
-    gap: 0;
-    margin-left: 2rem;
-  }
+.flag {
+  display: flex;
+  flex-direction: column;
+  width: 20px; height: 13px;
+  overflow: hidden;
+  border-radius: 1px;
+  flex-shrink: 0;
+}
+.flag span { flex: 1; display: block; }
+.flag span:nth-child(1) { background: #ae1c28; }
+.flag span:nth-child(2) { background: #fff; }
+.flag span:nth-child(3) { background: #21468b; }
 
-  nav button {
-    background: none;
-    border: none;
-    border-bottom: 2px solid transparent;
-    color: var(--subtext);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 0 1rem;
-    height: 64px;
-    cursor: pointer;
-    transition: color 0.2s, border-color 0.2s;
-  }
+.masthead-title {
+  text-align: center;
+  padding: 0.7rem 0 0.5rem;
+  border-bottom: 1px solid var(--rule);
+}
 
-  nav button:hover { color: var(--text); }
-  nav button.active { color: var(--accent); border-bottom-color: var(--accent); }
+.masthead-title h1 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(1.6rem, 5vw, 3.8rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--ink);
+}
 
-  /* ── Layout ── */
-  main {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 2rem;
-  }
+.masthead-title h1 em {
+  font-style: italic;
+  font-weight: 400;
+}
 
-  .section { display: none; }
-  .section.visible { display: block; }
+.masthead-sub {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-top: 0.2rem;
+}
 
-  /* ── Section headers ── */
-  .section-header {
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-  }
+nav {
+  display: flex;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 0.3rem 0;
+  gap: 0;
+}
+nav::-webkit-scrollbar { display: none; }
 
-  .section-header h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--text);
-  }
+nav button {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--mid);
+  padding: 0.3rem 1.2rem 0.3rem 0;
+  cursor: pointer;
+  transition: color 0.15s;
+  margin-bottom: -1px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+nav button:hover { color: var(--ink); }
+nav button.active { color: var(--ink); border-bottom-color: var(--ink); }
 
-  .section-header .badge {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--subtext);
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 0.2rem 0.5rem;
-    border-radius: 3px;
-  }
+/* ── MAIN LAYOUT ── */
+main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: clamp(1.25rem, 4vw, 2.5rem) clamp(1rem, 4vw, 2.5rem);
+}
 
-  /* ── ACTIVITY SECTION ── */
-  .activity-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 2rem;
-  }
+.section { display: none; }
+.section.visible { display: block; }
 
-  .minister-card {
-    background: var(--surface);
-    padding: 1.25rem;
-    position: relative;
-    transition: background 0.15s;
-  }
+/* ── SECTION HEADER ── */
+.ed-header {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  margin-bottom: 1.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--ink);
+}
 
-  .minister-card:hover { background: #1d2230; }
+.snum {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
 
-  .minister-card .party-bar {
-    position: absolute;
-    top: 0; left: 0;
-    width: 3px;
-    height: 100%;
-  }
+.ed-header h2 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(1.4rem, 3.5vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
 
-  .minister-card .status-dot {
-    position: absolute;
-    top: 1.1rem; right: 1.1rem;
-    width: 8px; height: 8px;
-    border-radius: 50%;
-  }
-  .status-dot.active  { background: #4ade80; box-shadow: 0 0 6px #4ade8088; }
-  .status-dot.quiet   { background: #facc15; }
-  .status-dot.silent  { background: var(--muted); }
+.ed-header h2 em { font-weight: 400; font-style: italic; }
 
-  .minister-card .ministry-name {
-    font-size: 0.7rem;
-    font-family: 'IBM Plex Mono', monospace;
-    color: var(--subtext);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-bottom: 0.35rem;
-    margin-left: 0.75rem;
-  }
+.ed-desc {
+  margin-left: auto;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mid);
+  text-align: right;
+  line-height: 1.7;
+}
 
-  .minister-card .minister-name {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text);
-    margin-left: 0.75rem;
-    margin-bottom: 0.8rem;
-  }
+/* ── STAT BOXES ── */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--rule2);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 1.75rem;
+  background: var(--bg2);
+}
 
-  .card-stats {
-    display: flex;
-    gap: 1rem;
-    margin-left: 0.75rem;
-    margin-bottom: 0.75rem;
-  }
+.stat-box {
+  padding: clamp(1rem, 3vw, 1.5rem) clamp(1rem, 3vw, 2rem);
+  border-right: 1px solid var(--rule2);
+}
+.stat-box:last-child { border-right: none; }
 
-  .stat-block { }
-  .stat-block .stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    line-height: 1;
-    color: var(--accent);
-  }
-  .stat-block .stat-label {
-    font-size: 0.62rem;
-    font-family: 'IBM Plex Mono', monospace;
-    color: var(--subtext);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-  }
+.stat-lbl {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 0.4rem;
+}
 
-  .activity-bar-outer {
-    background: var(--muted);
-    height: 3px;
-    border-radius: 2px;
-    margin: 0.5rem 0.75rem 0.5rem 0.75rem;
-    overflow: hidden;
-  }
-  .activity-bar-inner {
-    height: 100%;
-    border-radius: 2px;
-    background: var(--accent);
-    transition: width 0.6s ease;
-  }
+.stat-num {
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--ink);
+}
 
-  .card-footer {
-    margin-left: 0.75rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+.stat-sub {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.63rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-top: 0.25rem;
+}
 
-  .party-pill {
-    font-size: 0.6rem;
-    font-family: 'IBM Plex Mono', monospace;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 0.15rem 0.45rem;
-    border-radius: 3px;
-    font-weight: 600;
-  }
+/* ── BAR TABLE ── */
+.bar-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.75rem;
+}
 
-  .last-pub {
-    font-size: 0.62rem;
-    font-family: 'IBM Plex Mono', monospace;
-    color: var(--subtext);
-  }
+.bar-table tr { border-bottom: 1px solid var(--rule); }
+.bar-table tr:first-child { border-top: 2px solid var(--ink); }
+.bar-table tr:last-child { border-bottom: 2px solid var(--ink); }
+.bar-table tr:hover { background: var(--bg2); }
 
-  /* ── PARTIES SECTION ── */
-  .party-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
+.bar-table td {
+  padding: clamp(0.5rem, 1.5vw, 0.7rem) 0.4rem;
+  vertical-align: middle;
+}
 
-  .party-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1.5rem;
-    position: relative;
-    overflow: hidden;
-  }
+.col-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 600;
+  color: var(--muted);
+  width: 24px;
+  text-align: right;
+  padding-right: 0.75rem !important;
+}
 
-  .party-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-  }
+.col-minister { min-width: 130px; }
+.col-minister .nm {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(0.78rem, 2vw, 0.9rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink);
+}
+.col-minister .mn {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.58rem;
+  color: var(--mid);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
 
-  .party-card .party-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    font-weight: 900;
-    margin-bottom: 0.25rem;
-  }
+.col-party { width: 44px; }
 
-  .party-card .party-count {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--subtext);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 1rem;
-  }
+.ptag {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.1rem 0.35rem;
+  border-radius: 2px;
+  display: inline-block;
+}
 
-  .party-card .big-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 3rem;
-    font-weight: 900;
-    line-height: 1;
-    margin-bottom: 0.25rem;
-  }
+.col-bar { padding-right: 1.2rem !important; }
 
-  .party-card .big-num-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--subtext);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 1rem;
-  }
+.bar-out {
+  height: 6px;
+  background: var(--bg3);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.bar-in {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.9s cubic-bezier(0.16,1,0.3,1);
+}
 
-  .party-ministers {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
-  }
+.col-c30 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  width: 36px;
+  text-align: right;
+  color: var(--ink);
+}
 
-  .party-minister-tag {
-    font-size: 0.68rem;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    padding: 0.2rem 0.5rem;
-    border-radius: 3px;
-    color: var(--subtext);
-  }
+.col-c7 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.7rem;
+  color: var(--mid);
+  width: 48px;
+  text-align: right;
+}
 
-  /* ── TOPICS SECTION ── */
-  .topics-cloud {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 2.5rem;
-    min-height: 320px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.6rem;
-    margin-bottom: 2rem;
-  }
+.col-st { width: 56px; text-align: right; padding-right: 0.5rem !important; }
 
-  .topic-word {
-    cursor: pointer;
-    line-height: 1.2;
-    font-weight: 400;
-    transition: color 0.2s, transform 0.15s;
-    color: var(--subtext);
-  }
-  .topic-word:hover { transform: translateY(-2px); }
-  .topic-word.highlight { color: var(--accent2) !important; }
+.slbl {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.4rem;
+  border-radius: 2px;
+}
+.slbl.active { background: #dcf5e4; color: #1a6b2e; }
+.slbl.quiet  { background: #fef3d8; color: #8a5a00; }
+.slbl.silent { background: var(--bg3); color: var(--muted); }
 
-  /* ── FEED SECTION ── */
-  .feed-controls {
-    display: flex;
-    gap: 0.75rem;
-    margin-bottom: 1.25rem;
-    flex-wrap: wrap;
-    align-items: center;
-  }
+@media (prefers-color-scheme: dark) {
+  .slbl.active { background: #0d3318; color: #5ce87a; }
+  .slbl.quiet  { background: #2e1f00; color: #f0b040; }
+}
 
-  .search-box {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    color: var(--text);
-    font-family: 'Source Sans 3', sans-serif;
-    font-size: 0.9rem;
-    padding: 0.55rem 1rem;
-    border-radius: 6px;
-    outline: none;
-    flex: 1;
-    min-width: 200px;
-    transition: border-color 0.2s;
-  }
-  .search-box:focus { border-color: var(--accent); }
-  .search-box::placeholder { color: var(--muted); }
+/* ── COALITION ── */
+.coal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1px;
+  background: var(--rule2);
+  border: 1px solid var(--rule2);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 1.75rem;
+}
 
-  .filter-select {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    color: var(--text);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.05em;
-    padding: 0.55rem 0.85rem;
-    border-radius: 6px;
-    outline: none;
-    cursor: pointer;
-  }
-  .filter-select:focus { border-color: var(--accent); }
+.coal-card {
+  background: var(--bg);
+  padding: clamp(1.25rem, 3vw, 2rem);
+  position: relative;
+  overflow: hidden;
+}
 
-  .feed-count {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--subtext);
-    margin-left: auto;
-  }
+.coal-card::before {
+  content: attr(data-party);
+  position: absolute;
+  bottom: -1rem;
+  right: 0.5rem;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 7rem;
+  font-weight: 700;
+  opacity: 0.04;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  color: var(--ink);
+}
 
-  .feed-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+.coal-top-bar {
+  height: 3px;
+  border-radius: 2px;
+  margin-bottom: 1.25rem;
+}
 
-  .feed-item {
-    background: var(--surface);
-    padding: 1.1rem 1.25rem;
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    gap: 0.85rem;
-    align-items: start;
-    transition: background 0.15s;
-    text-decoration: none;
-    color: inherit;
-  }
-  .feed-item:hover { background: #1d2230; }
+.coal-party-lbl {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 0.25rem;
+}
 
-  .feed-item .feed-date {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.62rem;
-    color: var(--subtext);
-    white-space: nowrap;
-    padding-top: 0.2rem;
-    width: 72px;
-    text-align: right;
-  }
+.coal-party-name {
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 1.25rem;
+}
 
-  .feed-item .feed-body {}
+.coal-big-num {
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1;
+}
 
-  .feed-item .feed-title {
-    font-size: 0.92rem;
-    font-weight: 600;
-    color: var(--text);
-    line-height: 1.35;
-    margin-bottom: 0.25rem;
-  }
+.coal-big-lbl {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 1rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--rule);
+}
 
-  .feed-item .feed-meta {
-    font-size: 0.7rem;
-    font-family: 'IBM Plex Mono', monospace;
-    color: var(--subtext);
-    display: flex;
-    gap: 0.75rem;
-    align-items: center;
-    flex-wrap: wrap;
-  }
+.coal-bar-row {
+  height: 5px;
+  background: var(--bg3);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+}
+.coal-bar-fill { height: 100%; border-radius: 3px; }
 
-  .feed-item .feed-intro {
-    font-size: 0.8rem;
-    color: var(--subtext);
-    line-height: 1.5;
-    margin-top: 0.3rem;
-  }
+.mlist { display: flex; flex-direction: column; }
 
-  .feed-item .feed-arrow {
-    color: var(--muted);
-    font-size: 0.9rem;
-    padding-top: 0.15rem;
-    transition: color 0.15s, transform 0.15s;
-  }
-  .feed-item:hover .feed-arrow { color: var(--accent); transform: translateX(3px); }
+.mlist-row {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 400;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.38rem 0;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink2);
+}
+.mlist-row:last-child { border-bottom: none; }
 
-  .source-tag {
-    font-size: 0.55rem;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    padding: 0.1rem 0.35rem;
-    border-radius: 2px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
+.mlist-mn {
+  font-size: 0.58rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: right;
+  max-width: 50%;
+}
 
-  /* ── Loading / Error ── */
-  .loading-state, .error-state {
-    text-align: center;
-    padding: 6rem 2rem;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.85rem;
-    color: var(--subtext);
-  }
+/* ── TOPICS ── */
+.topics-wrap {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 1px;
+  background: var(--rule2);
+  border: 1px solid var(--rule2);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 1.75rem;
+}
 
-  .spinner {
-    width: 32px; height: 32px;
-    border: 2px solid var(--border);
-    border-top-color: var(--accent);
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-    margin: 0 auto 1rem;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
+.cloud-area {
+  background: var(--bg);
+  padding: clamp(1.25rem, 3vw, 2rem);
+  min-height: 320px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 0.3rem 0.5rem;
+}
 
-  /* ── Responsive ── */
-  @media (max-width: 600px) {
-    header { padding: 0 1rem; gap: 0.75rem; }
-    nav button { padding: 0 0.6rem; font-size: 0.65rem; }
-    main { padding: 1rem; }
-    .activity-grid { grid-template-columns: 1fr; }
-    .feed-item { grid-template-columns: 1fr; }
-    .feed-item .feed-date { text-align: left; width: auto; }
-  }
+.tw {
+  font-family: 'Libre Baskerville', serif;
+  cursor: pointer;
+  line-height: 1.2;
+  color: var(--ink);
+  transition: opacity 0.15s;
+}
+.tw:hover { opacity: 0.45; }
+.tw.it { font-style: italic; }
+
+.topics-side {
+  background: var(--bg2);
+  padding: 1.25rem;
+}
+
+.ts-lbl {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.tr-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.42rem 0;
+  border-bottom: 1px solid var(--rule);
+  cursor: pointer;
+}
+.tr-row:hover .tr-word { opacity: 0.6; }
+.tr-row:last-child { border-bottom: none; }
+
+.tr-rk {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.56rem;
+  color: var(--muted);
+  width: 14px;
+  text-align: right;
+  flex-shrink: 0;
+}
+.tr-word {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  flex: 1;
+  color: var(--ink);
+  transition: opacity 0.15s;
+}
+.tr-bar-out { flex: 1; height: 3px; background: var(--bg3); border-radius: 2px; overflow: hidden; }
+.tr-bar-in  { height: 100%; background: var(--ink); border-radius: 2px; }
+.tr-cnt {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  width: 24px;
+  text-align: right;
+  flex-shrink: 0;
+  color: var(--ink);
+}
+
+/* ── FEED ── */
+.feed-ctrls {
+  display: flex;
+  gap: 0.65rem;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--rule);
+  flex-wrap: wrap;
+}
+
+.feed-ctrls input,
+.feed-ctrls select {
+  background: var(--bg2);
+  border: 1px solid var(--rule2);
+  color: var(--ink);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 0.5rem 0.85rem;
+  border-radius: 3px;
+  outline: none;
+  transition: border-color 0.15s;
+  -webkit-appearance: none;
+}
+.feed-ctrls input { flex: 1; min-width: 180px; }
+.feed-ctrls input::placeholder { color: var(--muted); }
+.feed-ctrls input:focus,
+.feed-ctrls select:focus { border-color: var(--ink); }
+
+.feed-cnt {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.feed-list { display: flex; flex-direction: column; }
+
+.feed-item {
+  display: grid;
+  grid-template-columns: 72px 1fr auto;
+  gap: 1.25rem;
+  padding: clamp(0.85rem, 2vw, 1.1rem) 0;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  align-items: start;
+  transition: background 0.1s;
+  border-radius: 2px;
+}
+.feed-item:first-child { border-top: 2px solid var(--ink); }
+.feed-item:last-child  { border-bottom: 2px solid var(--ink); }
+.feed-item:hover { background: var(--bg2); }
+.feed-item:hover .fi-title { text-decoration: underline; text-decoration-color: var(--muted); }
+
+.fi-date {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--mid);
+  line-height: 1.6;
+  padding-top: 0.1rem;
+}
+
+.fi-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(0.85rem, 2vw, 0.95rem);
+  line-height: 1.45;
+  margin-bottom: 0.28rem;
+  color: var(--ink);
+}
+
+.fi-byline {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.63rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--mid);
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.fi-intro {
+  font-size: clamp(0.73rem, 1.8vw, 0.8rem);
+  font-weight: 300;
+  color: var(--mid);
+  line-height: 1.5;
+  margin-top: 0.3rem;
+}
+
+.fi-arrow {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  padding-top: 0.1rem;
+  white-space: nowrap;
+  transition: color 0.15s;
+}
+.feed-item:hover .fi-arrow { color: var(--ink); }
+
+/* ── LOADING ── */
+.loading-state {
+  padding: 4rem 0;
+  text-align: center;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--mid);
+}
+
+/* ── FOOTER ── */
+.site-footer {
+  border-top: 2px solid var(--ink);
+  padding: 1.1rem clamp(1rem, 4vw, 2.5rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.site-footer .fl {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 0.77rem;
+  font-style: italic;
+  color: var(--mid);
+}
+.site-footer .fr {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .stat-row { grid-template-columns: 1fr; }
+  .stat-box { border-right: none; border-bottom: 1px solid var(--rule2); }
+  .stat-box:last-child { border-bottom: none; }
+
+  .topics-wrap { grid-template-columns: 1fr; }
+  .topics-side { border-top: 1px solid var(--rule2); }
+
+  .feed-item { grid-template-columns: 1fr; gap: 0.25rem; }
+  .fi-date { display: inline; margin-right: 0.5rem; }
+  .fi-arrow { display: none; }
+
+  .col-c7, .col-st { display: none; }
+  .ed-desc { display: none; }
+
+  .coal-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 900px) {
+  .col-c7 { display: none; }
+}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="logo-flag"><span></span><span></span><span></span></div>
-  <div class="site-title">Kabinets<span>monitor</span></div>
+<div class="masthead">
+  <div class="masthead-top">
+    <span class="dateline" id="top-date">—</span>
+    <div class="flag"><span></span><span></span><span></span></div>
+    <span class="dateline dateline-right" id="top-count">—</span>
+  </div>
+  <div class="masthead-title">
+    <h1>Kabinets<em>monitor</em></h1>
+    <div class="masthead-sub">Kabinet-Jetten · Persberichten &amp; Activiteit · Nederland 2026</div>
+  </div>
   <nav>
-    <button class="active" onclick="showSection('activity')">Activiteit</button>
-    <button onclick="showSection('parties')">Coalitie</button>
-    <button onclick="showSection('topics')">Trending</button>
-    <button onclick="showSection('feed')">Persberichten</button>
+    <button class="active" onclick="showSection('activity',this)">I. Activiteit</button>
+    <button onclick="showSection('coalition',this)">II. Coalitie</button>
+    <button onclick="showSection('topics',this)">III. Trending</button>
+    <button onclick="showSection('feed',this)">IV. Persberichten</button>
   </nav>
-  <div class="header-meta" id="header-meta">laden…</div>
-</header>
+</div>
 
 <main>
-  <!-- ACTIVITY -->
+  <!-- I -->
   <section id="section-activity" class="section visible">
-    <div class="section-header">
-      <h2>Minister Activiteit</h2>
-      <span class="badge">Afgelopen 30 dagen</span>
+    <div class="ed-header">
+      <span class="snum">§ I</span>
+      <h2>Minister <em>Activiteit</em></h2>
+      <div class="ed-desc">Persberichten per bewindspersoon<br>30 dagen · 7 dagen</div>
     </div>
-    <div id="activity-container"><div class="loading-state"><div class="spinner"></div>Data ophalen…</div></div>
+    <div id="activity-container"><div class="loading-state">Laden…</div></div>
   </section>
 
-  <!-- PARTIES -->
-  <section id="section-parties" class="section">
-    <div class="section-header">
-      <h2>Coalitie Breakdown</h2>
-      <span class="badge">PVV · VVD · NSC · BBB</span>
+  <!-- II -->
+  <section id="section-coalition" class="section">
+    <div class="ed-header">
+      <span class="snum">§ II</span>
+      <h2>Coalitie <em>Breakdown</em></h2>
+      <div class="ed-desc">D66 · VVD · CDA<br>Minderheidskabinet 2026</div>
     </div>
-    <div id="parties-container"><div class="loading-state"><div class="spinner"></div></div></div>
+    <div id="coalition-container"><div class="loading-state">Laden…</div></div>
   </section>
 
-  <!-- TOPICS -->
+  <!-- III -->
   <section id="section-topics" class="section">
-    <div class="section-header">
-      <h2>Trending Onderwerpen</h2>
-      <span class="badge">Frequentie analyse</span>
+    <div class="ed-header">
+      <span class="snum">§ III</span>
+      <h2>Trending <em>Onderwerpen</em></h2>
+      <div class="ed-desc">Woordfrequentie analyse<br>Alle ministeries</div>
     </div>
-    <div id="topics-container"><div class="loading-state"><div class="spinner"></div></div></div>
+    <div id="topics-container"><div class="loading-state">Laden…</div></div>
   </section>
 
-  <!-- FEED -->
+  <!-- IV -->
   <section id="section-feed" class="section">
-    <div class="section-header">
-      <h2>Persberichten</h2>
-      <span class="badge">Live feed</span>
+    <div class="ed-header">
+      <span class="snum">§ IV</span>
+      <h2>Persberichten <em>Feed</em></h2>
+      <div class="ed-desc">Doorzoekbaar archief<br>Alle ministeries</div>
     </div>
-    <div class="feed-controls">
-      <input class="search-box" id="search-input" type="text" placeholder="Zoek persberichten…" oninput="filterFeed()"/>
-      <select class="filter-select" id="ministry-filter" onchange="filterFeed()">
-        <option value="">Alle ministeries</option>
-      </select>
-      <select class="filter-select" id="party-filter" onchange="filterFeed()">
+    <div class="feed-ctrls">
+      <input type="text" id="search-input" placeholder="Zoek op titel, minister of onderwerp…" oninput="filterFeed()"/>
+      <select id="ministry-filter" onchange="filterFeed()"><option value="">Alle ministeries</option></select>
+      <select id="party-filter" onchange="filterFeed()">
         <option value="">Alle partijen</option>
-        <option value="PVV">PVV</option>
+        <option value="D66">D66</option>
         <option value="VVD">VVD</option>
-        <option value="NSC">NSC</option>
-        <option value="BBB">BBB</option>
-        <option value="Independent">Independent</option>
+        <option value="CDA">CDA</option>
       </select>
-      <span class="feed-count" id="feed-count"></span>
+      <span class="feed-cnt" id="feed-count"></span>
     </div>
-    <div id="feed-container"><div class="loading-state"><div class="spinner"></div></div></div>
+    <div id="feed-container"><div class="loading-state">Laden…</div></div>
   </section>
 </main>
+
+<footer class="site-footer">
+  <div class="fl">Brondata via opendata.rijksoverheid.nl &amp; RSS-feeds</div>
+  <div class="fr" id="footer-gen">—</div>
+</footer>
 
 <script>
 let DATA = null;
 
-// ── Navigation ────────────────────────────────────────────────────────────────
-function showSection(name) {
+function showSection(name, btn) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
   document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
   document.getElementById('section-' + name).classList.add('visible');
-  event.currentTarget.classList.add('active');
+  if (btn) btn.classList.add('active');
 }
 
-// ── Load data ─────────────────────────────────────────────────────────────────
+function pColor(p) {
+  const dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const map = dark
+    ? { D66:'#34c25a', VVD:'#f09040', CDA:'#2ab894' }
+    : { D66:'#007a2b', VVD:'#c45e00', CDA:'#005f49' };
+  return map[p] || (dark ? '#9e9589' : '#6b6358');
+}
+
+function fmtDate(iso) {
+  if (!iso) return '–';
+  return new Date(iso).toLocaleDateString('nl-NL', {day:'numeric', month:'short', year:'numeric'});
+}
+
+function daysAgo(iso) {
+  if (!iso) return '';
+  const d = Math.round((Date.now() - new Date(iso)) / 86400000);
+  if (d === 0) return 'vandaag';
+  if (d === 1) return 'gisteren';
+  return d + ' d.';
+}
+
 async function loadData() {
   try {
     const r = await fetch('dashboard.json');
     if (!r.ok) throw new Error('HTTP ' + r.status);
     DATA = await r.json();
     render();
-  } catch (e) {
+  } catch(e) {
     document.querySelectorAll('.loading-state').forEach(el => {
-      el.innerHTML = `<div class="error-state">⚠️ Kon data niet laden.<br><br>
-        Zorg dat <code>backend/fetch_data.py</code> is uitgevoerd<br>en dat <code>frontend/data/dashboard.json</code> bestaat.<br><br>
-        <small style="color:var(--muted)">${e.message}</small></div>`;
+      el.innerHTML = `⚠ Kon data niet laden.<br><small style="opacity:0.6">${e.message} — voer fetch_data.py uit</small>`;
     });
   }
 }
 
-// ── Format date ───────────────────────────────────────────────────────────────
-function fmtDate(iso) {
-  if (!iso) return '–';
-  const d = new Date(iso);
-  return d.toLocaleDateString('nl-NL', { day: 'numeric', month: 'short', year: 'numeric' });
-}
-
-function daysAgo(iso) {
-  if (!iso) return '';
-  const diff = Math.round((Date.now() - new Date(iso)) / 86400000);
-  if (diff === 0) return 'vandaag';
-  if (diff === 1) return 'gisteren';
-  return diff + 'd geleden';
-}
-
-// ── Render all sections ────────────────────────────────────────────────────────
 function render() {
   const gen = new Date(DATA.generated_at);
-  document.getElementById('header-meta').innerHTML =
-    `Bijgewerkt: ${gen.toLocaleDateString('nl-NL', {day:'numeric',month:'short'})} ${gen.toLocaleTimeString('nl-NL',{hour:'2-digit',minute:'2-digit'})}<br>${DATA.activity.length} ministeries · ${DATA.feed.length} berichten`;
-
+  document.getElementById('top-date').textContent =
+    gen.toLocaleDateString('nl-NL', {weekday:'long', day:'numeric', month:'long', year:'numeric'});
+  document.getElementById('top-count').textContent =
+    DATA.activity.length + ' ministeries · ' + DATA.feed.length + ' berichten';
+  document.getElementById('footer-gen').textContent =
+    'Bijgewerkt ' + gen.toLocaleTimeString('nl-NL', {hour:'2-digit', minute:'2-digit'});
   renderActivity();
-  renderParties();
+  renderCoalition();
   renderTopics();
   renderFeed();
 }
 
-// ── Activity grid ─────────────────────────────────────────────────────────────
+/* ── ACTIVITY ── */
 function renderActivity() {
-  const max = Math.max(...DATA.activity.map(a => a.count_30d), 1);
-  const html = DATA.activity.map(a => `
-    <div class="minister-card">
-      <div class="party-bar" style="background:${a.party_color}"></div>
-      <div class="status-dot ${a.status}" title="${a.status}"></div>
-      <div class="ministry-name">${a.ministry}</div>
-      <div class="minister-name">${a.minister}</div>
-      <div class="card-stats">
-        <div class="stat-block">
-          <div class="stat-num">${a.count_30d}</div>
-          <div class="stat-label">30 dagen</div>
-        </div>
-        <div class="stat-block">
-          <div class="stat-num">${a.count_7d}</div>
-          <div class="stat-label">7 dagen</div>
-        </div>
-      </div>
-      <div class="activity-bar-outer">
-        <div class="activity-bar-inner" style="width:${Math.round(a.count_30d/max*100)}%;background:${a.party_color}"></div>
-      </div>
-      <div class="card-footer">
-        <span class="party-pill" style="background:${a.party_color}22;color:${a.party_color};border:1px solid ${a.party_color}44">${a.party}</span>
-        <span class="last-pub">${a.last_publication ? daysAgo(a.last_publication) : 'geen data'}</span>
-      </div>
+  const act = DATA.activity;
+  const total30 = act.reduce((s,a)=>s+a.count_30d, 0);
+  const total7  = act.reduce((s,a)=>s+a.count_7d, 0);
+  const nActive = act.filter(a=>a.status==='active').length;
+  const max30   = Math.max(...act.map(a=>a.count_30d), 1);
+
+  const topHtml = `<div class="stat-row">
+    <div class="stat-box">
+      <div class="stat-lbl">Totaal persberichten</div>
+      <div class="stat-num">${total30}</div>
+      <div class="stat-sub">Afgelopen 30 dagen</div>
     </div>
-  `).join('');
+    <div class="stat-box">
+      <div class="stat-lbl">Deze week</div>
+      <div class="stat-num">${total7}</div>
+      <div class="stat-sub">Afgelopen 7 dagen</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-lbl">Actieve ministers</div>
+      <div class="stat-num">${nActive}<span style="font-size:1.2rem;opacity:0.4"> /${act.length}</span></div>
+      <div class="stat-sub">Publicatie ≤ 3 dagen</div>
+    </div>
+  </div>`;
+
+  const rows = act.map((a, i) => {
+    const c   = pColor(a.party);
+    const pct = Math.round(a.count_30d / max30 * 100);
+    return `<tr>
+      <td class="col-num">${String(i+1).padStart(2,'0')}</td>
+      <td class="col-minister">
+        <div class="nm">${a.minister}</div>
+        <div class="mn">${a.ministry}</div>
+      </td>
+      <td class="col-party">
+        <span class="ptag" style="background:${c}22;color:${c};border:1px solid ${c}55">${a.party}</span>
+      </td>
+      <td class="col-bar">
+        <div class="bar-out"><div class="bar-in" style="width:${pct}%;background:${c}"></div></div>
+      </td>
+      <td class="col-c30">${a.count_30d}</td>
+      <td class="col-c7">${a.count_7d}w</td>
+      <td class="col-st">
+        <span class="slbl ${a.status}">${a.status==='active'?'Actief':a.status==='quiet'?'Stil':'Inactief'}</span>
+      </td>
+    </tr>`;
+  }).join('');
+
   document.getElementById('activity-container').innerHTML =
-    `<div class="activity-grid">${html}</div>`;
+    topHtml + `<table class="bar-table"><tbody>${rows}</tbody></table>`;
 }
 
-// ── Parties ───────────────────────────────────────────────────────────────────
-function renderParties() {
-  const totalMax = Math.max(...DATA.parties.map(p => p.total_30d), 1);
-  const html = DATA.parties.map(p => `
-    <div class="party-card">
-      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:${p.color}"></div>
-      <div class="party-name" style="color:${p.color}">${p.party}</div>
-      <div class="party-count">${p.ministers.length} minister${p.ministers.length !== 1 ? 's' : ''}</div>
-      <div class="big-num" style="color:${p.color}">${p.total_30d}</div>
-      <div class="big-num-label">persberichten (30d)</div>
-      <div class="activity-bar-outer" style="margin:0 0 1rem 0">
-        <div class="activity-bar-inner" style="width:${Math.round(p.total_30d/totalMax*100)}%;background:${p.color}"></div>
-      </div>
-      <div class="party-ministers">
-        ${p.ministers.map(m => `<span class="party-minister-tag">${m}</span>`).join('')}
-      </div>
-    </div>
-  `).join('');
-  document.getElementById('parties-container').innerHTML =
-    `<div class="party-grid">${html}</div>`;
+/* ── COALITION ── */
+function renderCoalition() {
+  const parties = DATA.parties;
+  const maxT = Math.max(...parties.map(p=>p.total_30d), 1);
+
+  const cards = parties.map(p => {
+    const c   = pColor(p.party);
+    const pct = Math.round(p.total_30d / maxT * 100);
+    const ministers = DATA.activity.filter(a => a.party === p.party);
+    const rows = ministers.map(m =>
+      `<div class="mlist-row">
+        <span>${m.minister}</span>
+        <span class="mlist-mn">${m.ministry}</span>
+      </div>`
+    ).join('');
+    return `<div class="coal-card" data-party="${p.party}">
+      <div class="coal-top-bar" style="background:${c}"></div>
+      <div class="coal-party-lbl">Coalitiepartij</div>
+      <div class="coal-party-name" style="color:${c}">${p.party}</div>
+      <div class="coal-big-num" style="color:${c}">${p.total_30d}</div>
+      <div class="coal-big-lbl">Persberichten (30 dagen)</div>
+      <div class="coal-bar-row"><div class="coal-bar-fill" style="width:${pct}%;background:${c}"></div></div>
+      <div class="mlist">${rows}</div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('coalition-container').innerHTML =
+    `<div class="coal-grid">${cards}</div>`;
 }
 
-// ── Topics cloud ──────────────────────────────────────────────────────────────
+/* ── TOPICS ── */
 function renderTopics() {
-  const maxCount = Math.max(...DATA.topics.map(t => t.count), 1);
-  const minCount = Math.min(...DATA.topics.map(t => t.count), 1);
-  const html = DATA.topics.map(t => {
-    const ratio = (t.count - minCount) / (maxCount - minCount + 1);
-    const size  = 0.8 + ratio * 2.2;
-    const alpha = 0.35 + ratio * 0.65;
-    return `<span class="topic-word" style="font-size:${size.toFixed(2)}rem;color:rgba(168,143,92,${alpha.toFixed(2)})"
-      title="${t.word}: ${t.count}×" onclick="topicClick(this,'${t.word}')">${t.word}</span>`;
+  const topics = DATA.topics;
+  const maxC = Math.max(...topics.map(t=>t.count), 1);
+  const minC = Math.min(...topics.map(t=>t.count), 1);
+
+  const cloud = topics.map((t, i) => {
+    const r   = (t.count - minC) / (maxC - minC + 1);
+    const sz  = (0.72 + r * 2.0).toFixed(2);
+    const op  = (0.25 + r * 0.75).toFixed(2);
+    const cls = i % 3 === 1 ? ' it' : '';
+    return `<span class="tw${cls}" style="font-size:${sz}rem;opacity:${op}"
+      onclick="topicSearch('${t.word}')" title="${t.word}: ${t.count}×">${t.word}</span>`;
   }).join(' ');
 
+  const sidebar = topics.slice(0, 15).map((t, i) => {
+    const pct = Math.round(t.count / maxC * 100);
+    return `<div class="tr-row" onclick="topicSearch('${t.word}')">
+      <span class="tr-rk">${i+1}</span>
+      <span class="tr-word">${t.word}</span>
+      <div class="tr-bar-out"><div class="tr-bar-in" style="width:${pct}%"></div></div>
+      <span class="tr-cnt">${t.count}</span>
+    </div>`;
+  }).join('');
+
   document.getElementById('topics-container').innerHTML = `
-    <div class="topics-cloud">${html}</div>`;
+    <div class="topics-wrap">
+      <div class="cloud-area">${cloud}</div>
+      <div class="topics-side">
+        <div class="ts-lbl">Top 15 — Frequentie</div>
+        ${sidebar}
+      </div>
+    </div>`;
 }
 
-function topicClick(el, word) {
-  document.querySelectorAll('.topic-word').forEach(w => w.classList.remove('highlight'));
-  el.classList.add('highlight');
-  // Switch to feed and filter
+function topicSearch(word) {
+  document.getElementById('search-input').value = word;
   document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
   document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
   document.getElementById('section-feed').classList.add('visible');
   document.querySelectorAll('nav button')[3].classList.add('active');
-  document.getElementById('search-input').value = word;
   filterFeed();
 }
 
-// ── Feed ──────────────────────────────────────────────────────────────────────
+/* ── FEED ── */
 function renderFeed() {
-  // Populate ministry dropdown
-  const ministries = [...new Set(DATA.feed.map(f => f.ministry))].sort();
-  const sel = document.getElementById('ministry-filter');
-  ministries.forEach(m => {
-    const opt = document.createElement('option');
-    opt.value = m; opt.textContent = m;
-    sel.appendChild(opt);
+  const mins = [...new Set(DATA.feed.map(f => f.ministry))].sort();
+  const sel  = document.getElementById('ministry-filter');
+  mins.forEach(m => {
+    const o = document.createElement('option');
+    o.value = m; o.textContent = m;
+    sel.appendChild(o);
   });
   filterFeed();
 }
 
 function filterFeed() {
-  const q     = (document.getElementById('search-input').value || '').toLowerCase();
-  const min   = document.getElementById('ministry-filter').value;
-  const party = document.getElementById('party-filter').value;
+  const q   = (document.getElementById('search-input').value || '').toLowerCase();
+  const min = document.getElementById('ministry-filter').value;
+  const par = document.getElementById('party-filter').value;
 
   const items = DATA.feed.filter(f => {
-    if (min   && f.ministry !== min)                   return false;
-    if (party && f.party    !== party)                 return false;
+    if (min && f.ministry !== min) return false;
+    if (par && f.party    !== par) return false;
     if (q && !f.title.toLowerCase().includes(q) &&
              !f.intro.toLowerCase().includes(q) &&
-             !f.minister.toLowerCase().includes(q))    return false;
+             !f.minister.toLowerCase().includes(q)) return false;
     return true;
   });
 
-  document.getElementById('feed-count').textContent = `${items.length} berichten`;
+  document.getElementById('feed-count').textContent = items.length + ' berichten';
 
-  const html = items.map(f => `
-    <a class="feed-item" href="${f.url}" target="_blank" rel="noopener">
-      <div class="feed-date">${fmtDate(f.date_ts)}</div>
-      <div class="feed-body">
-        <div class="feed-title">${f.title}</div>
-        <div class="feed-meta">
-          <span style="color:${f.party_color}">${f.minister}</span>
-          <span>·</span>
-          <span>${f.ministry}</span>
-          <span class="source-tag">${f.source}</span>
+  const html = items.map(f => {
+    const c = pColor(f.party);
+    return `<a class="feed-item" href="${f.url}" target="_blank" rel="noopener">
+      <div class="fi-date">${fmtDate(f.date_ts)}<br>${daysAgo(f.date_ts)}</div>
+      <div>
+        <div class="fi-title">${f.title}</div>
+        <div class="fi-byline">
+          <span style="color:${c}">${f.party}</span>
+          <span>·</span><span>${f.minister}</span>
+          <span>·</span><span>${f.ministry}</span>
         </div>
-        ${f.intro ? `<div class="feed-intro">${f.intro}</div>` : ''}
+        ${f.intro ? `<div class="fi-intro">${f.intro}</div>` : ''}
       </div>
-      <div class="feed-arrow">→</div>
-    </a>
-  `).join('') || '<div class="loading-state">Geen resultaten gevonden.</div>';
+      <div class="fi-arrow">Lees →</div>
+    </a>`;
+  }).join('') || '<div class="loading-state">Geen resultaten.</div>';
 
-  document.getElementById('feed-container').innerHTML =
-    `<div class="feed-list">${html}</div>`;
+  document.getElementById('feed-container').innerHTML = `<div class="feed-list">${html}</div>`;
 }
 
-// ── Boot ──────────────────────────────────────────────────────────────────────
+// Re-render colors if system theme changes
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+  if (DATA) render();
+});
+
 loadData();
 </script>
 </body>
