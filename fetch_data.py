@@ -309,7 +309,7 @@ def party_breakdown(activity: list) -> list:
 
 # ── Entry point ───────────────────────────────────────────────────────────────
 def main():
-    out_dir = Path(__file__).parent.parent / "frontend" / "data"
+    out_dir = Path(__file__).parent
     out_dir.mkdir(parents=True, exist_ok=True)
 
     all_news: dict = {}
