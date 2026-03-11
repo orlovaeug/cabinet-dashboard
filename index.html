@@ -582,7 +582,7 @@ function showSection(name) {
 // ── Load data ─────────────────────────────────────────────────────────────────
 async function loadData() {
   try {
-    const r = await fetch('data/dashboard.json');
+    const r = await fetch('dashboard.json');
     if (!r.ok) throw new Error('HTTP ' + r.status);
     DATA = await r.json();
     render();
